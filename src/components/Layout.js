@@ -1,8 +1,7 @@
 import React from 'react';
 
 import Header from './header';
-import Card from './card';
-import Footer from './footer';
+import Routes from '../Routes';
 
 export default function Layout({ onToggleTheme, currentTheme }) {
   return (
@@ -11,10 +10,7 @@ export default function Layout({ onToggleTheme, currentTheme }) {
         onToggleTheme={onToggleTheme}
         currentTheme={currentTheme}
       />
-      <Card />
-      <Card />
-      <Card />
-      <Footer />
+      <Routes />
     </>
   );
 }

@@ -28,12 +28,17 @@ export const ContainerButton = styled.div`
 export const Button = styled.button`
   width: 100px;
   height: 30px;
+  opacity: 0.9;
 
   cursor: pointer;
   color: ${(props) => props.theme.backgroundColor};
   background-color: ${(props) => props.theme.primaryFontColor};
   border-radius: ${(props) => props.theme.buttonBorderRadius};
   border:none;
+
+  :hover{
+    opacity: 1;
+  }
 `;
 
 export const ButtonAdd = styled.div`

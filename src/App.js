@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { ThemeProvider } from 'styled-components';
+import { ModalProvider } from 'styled-react-modal';
 import Layout from './components/Layout';
 import GlobalStyle from './styles/GlobalStyle';
 import { themes } from './styles/themes/theme';
@@ -15,11 +16,13 @@ export default function App() {
 
   return (
     <ThemeProvider theme={currentTheme}>
-      <GlobalStyle />
-      <Layout
-        onToggleTheme={handleToggleTheme}
-        currentTheme={theme}
-      />
+      <ModalProvider>
+        <GlobalStyle />
+        <Layout
+          onToggleTheme={handleToggleTheme}
+          currentTheme={theme}
+        />
+      </ModalProvider>
     </ThemeProvider>
   );
 }

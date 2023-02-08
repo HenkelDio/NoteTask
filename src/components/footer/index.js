@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CreateModal from '../../modals/create';
 
 import {
   ButtonAdd, Container, ContainerButton, Button,
@@ -6,20 +7,35 @@ import {
 
 export default function Footer() {
   const [menu, setMenu] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const handleToggleMenu = () => {
     setMenu((prevState) => (prevState === false));
   };
 
+  const openCreateModal = () => {
+    setIsOpen(true);
+    setMenu(false);
+  };
+
+  const closeCreateModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <Container>
+
+      <CreateModal
+        modalIsOpen={modalIsOpen}
+        onCloseCreateModal={closeCreateModal}
+      />
+
       {menu
       && (
       <ContainerButton>
-        <Button>
-          Criar
-        </Button>
-        <Button>
+        <Button
+          onClick={openCreateModal}
+        >
           Criar
         </Button>
       </ContainerButton>
