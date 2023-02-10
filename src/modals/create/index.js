@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Modal from 'styled-react-modal';
 
 import { FormInput, Button, CloseModal } from './style';
@@ -36,6 +37,22 @@ const StyledModal = Modal.styled`
 `;
 
 export default function CreateModal({ modalIsOpen, onCloseCreateModal }) {
+  const [task, setTask] = useState([]);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+
+  const createTask = async () => {
+    await axios.post('http://localhost:3000/tasks', {
+      title,
+      content,
+    })
+      .then((res) => {
+        if (res) {
+          setTask(res);
+        }
+      });
+  };
+
   return (
     <StyledModal
       isOpen={modalIsOpen}
@@ -51,13 +68,16 @@ export default function CreateModal({ modalIsOpen, onCloseCreateModal }) {
       <form>
         <FormInput>
           <label htmlFor="title">Título</label>
-          <input type="text" name="title" />
+          <input type="text" name="title" onChange={(e) => setTitle(e.target.value)} />
         </FormInput>
         <FormInput>
           <label htmlFor="content">Conteúdo</label>
-          <input type="text" name="content" />
+          <input type="text" name="content" onChange={(e) => setContent(e.target.value)} />
         </FormInput>
-        <Button type="button">
+        <Button
+          onClick={createTask}
+          type="button"
+        >
           Criar
         </Button>
       </form>

@@ -6,4 +6,5 @@ export const commonStyle = {
   buttonBackgroundColor: '#F5CB5C',
   buttonFontColor: '#333533',
   onHoverButtonBackgroundColor: '#dab44a',
+  onDeleteBackgroundColor: '#b15d5d',
 };
