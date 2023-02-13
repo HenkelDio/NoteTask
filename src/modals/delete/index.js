@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
 import Modal from 'styled-react-modal';
+import { UpdateTaskContext } from '../../context/UpdateTaskContext';
 
 import { CloseModal } from './style';
 
@@ -59,16 +60,17 @@ const StyledModal = Modal.styled`
   }
 `;
 
-export default function DeleteModal({ modalIsOpen, onCloseDeleteModal, id }) {
-  console.log(id);
+export default function DeleteModal({
+  modalIsOpen, onCloseDeleteModal, id,
+}) {
+  const { setUpdateTasks } = useContext(UpdateTaskContext);
 
   const deleteTask = async () => {
-    await axios.delete(`http://localhost:3000/tasks/${id}`)
-      .then((res) => {
-        if (res) {
-          console.log(res);
-        }
-      });
+    await axios.delete(`http://localhost:3000/tasks/${id}`).then((res) => {
+      if (res) {
+        setUpdateTasks(res);
+      }
+    });
   };
 
   return (

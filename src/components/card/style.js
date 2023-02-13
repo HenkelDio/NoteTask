@@ -8,6 +8,7 @@ export const Container = styled.div`
 
   margin: 10px auto;
   padding: 2px 10px;
+  opacity: 1;
 
   font-family: Arial, Helvetica, sans-serif;
   background-color: ${(props) => props.theme.cardBackgroundColor};
@@ -25,6 +26,15 @@ export const Container = styled.div`
 
   :hover {
     background-color: ${(props) => props.theme.onCardHover}
+  }
+
+  @keyframes entryAnimation {
+    0%{
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 
   @media(max-width: 560px){
@@ -71,6 +81,7 @@ export const FormInput = styled.form`
     border: none;
     color: ${(props) => props.theme.primaryFontColor};
     outline: none;
+    opacity: 0.8;
   }
 
   input:nth-child(1){

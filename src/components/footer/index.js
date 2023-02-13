@@ -28,6 +28,7 @@ export default function Footer() {
       <CreateModal
         modalIsOpen={modalIsOpen}
         onCloseCreateModal={closeCreateModal}
+        setIsOpen={setIsOpen}
       />
 
       {menu

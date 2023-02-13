@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { UpdateTaskContext } from '../../context/UpdateTaskContext';
 
 import Card from '../../components/card';
 
 export default function Cards() {
   const [tasks, setTasks] = useState([]);
+
+  const { updateTasks } = useContext(UpdateTaskContext);
 
   useEffect(() => {
     const getTasks = async () => {
@@ -16,7 +19,7 @@ export default function Cards() {
         });
     };
     getTasks();
-  }, []);
+  }, [updateTasks]);
 
   return (
     <>

@@ -1,9 +1,12 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, {
+  useState, useMemo, useEffect, useContext,
+} from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ModalProvider } from 'styled-react-modal';
 import Layout from './components/Layout';
 import GlobalStyle from './styles/GlobalStyle';
 import { themes } from './styles/themes/theme';
+import { UpdateTaskContextProvider } from './context/UpdateTaskContext';
 
 export default function App() {
   const [theme, setTheme] = useState('dark');
@@ -23,11 +26,13 @@ export default function App() {
   return (
     <ThemeProvider theme={currentTheme}>
       <ModalProvider>
-        <GlobalStyle />
-        <Layout
-          onToggleTheme={handleToggleTheme}
-          currentTheme={theme}
-        />
+        <UpdateTaskContextProvider>
+          <GlobalStyle />
+          <Layout
+            onToggleTheme={handleToggleTheme}
+            currentTheme={theme}
+          />
+        </UpdateTaskContextProvider>
       </ModalProvider>
     </ThemeProvider>
   );

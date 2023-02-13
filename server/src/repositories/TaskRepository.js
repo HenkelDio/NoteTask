@@ -15,6 +15,16 @@ class TaskRepository {
     return row;
   }
 
+  async update(id, { title, content }) {
+    const row = await db.query(`
+      UPDATE tasks
+      SET title = "${title}", content = "${content}"
+      WHERE id = ${id}
+    `);
+
+    return row;
+  }
+
   async delete(id) {
     const deleteOp = await db.query(`
      DELETE FROM tasks

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import Modal from 'styled-react-modal';
 
 import { FormInput, Button, CloseModal } from './style';
+import { UpdateTaskContext } from '../../context/UpdateTaskContext';
 
 const StyledModal = Modal.styled`
   position: relative;
@@ -36,10 +37,12 @@ const StyledModal = Modal.styled`
   }
 `;
 
-export default function CreateModal({ modalIsOpen, onCloseCreateModal }) {
+export default function CreateModal({ modalIsOpen, onCloseCreateModal, setIsOpen }) {
   const [task, setTask] = useState([]);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+
+  const { setUpdateTasks } = useContext(UpdateTaskContext);
 
   const createTask = async () => {
     await axios.post('http://localhost:3000/tasks', {
@@ -49,6 +52,8 @@ export default function CreateModal({ modalIsOpen, onCloseCreateModal }) {
       .then((res) => {
         if (res) {
           setTask(res);
+          setUpdateTasks(res);
+          setIsOpen(false);
         }
       });
   };
