@@ -1,5 +1,5 @@
 import React, {
-  useState, useMemo, useEffect, useContext,
+  useState, useMemo, useEffect,
 } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { ModalProvider } from 'styled-react-modal';
@@ -9,7 +9,7 @@ import { themes } from './styles/themes/theme';
 import { UpdateTaskContextProvider } from './context/UpdateTaskContext';
 
 export default function App() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState();
 
   const currentTheme = useMemo(() => themes[theme] || themes.dark, [theme]);
 
@@ -17,11 +17,9 @@ export default function App() {
     setTheme((prevState) => (prevState === 'dark' ? 'light' : 'dark'));
   };
 
-  localStorage.setItem('theme', theme);
-
   useEffect(() => {
     setTheme(localStorage.getItem('theme'));
-  }, [theme]);
+  }, []);
 
   return (
     <ThemeProvider theme={currentTheme}>

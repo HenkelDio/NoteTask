@@ -26,6 +26,7 @@ export default function Cards() {
       {
         tasks.map((task) => (
           <Card
+            key={task.id}
             id={task.id}
             title={task.title}
             content={task.content}
