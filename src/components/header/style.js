@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
+  position: relative;
+
+  width: 500px;
+
   margin: 0 auto;
   color: ${(props) => props.theme.secondFontColor};
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

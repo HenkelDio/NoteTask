@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { UpdateTaskContext } from '../../context/UpdateTaskContext';
 
+import { Container } from './style';
 import Card from '../../components/card';
 
 export default function Cards() {
@@ -22,7 +23,7 @@ export default function Cards() {
   }, [updateTasks]);
 
   return (
-    <>
+    <Container>
       {
         tasks.map((task) => (
           <Card
@@ -33,6 +34,6 @@ export default function Cards() {
           />
         ))
       }
-    </>
+    </Container>
   );
 }

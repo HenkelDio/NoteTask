@@ -1,5 +1,7 @@
 import React from 'react';
-import { Container, ContainerTheme, Separator } from './style';
+import {
+  Container, ContainerTheme, Separator,
+} from './style';
 
 export default function Header({ onToggleTheme, currentTheme }) {
   return (
